@@ -8,6 +8,17 @@ PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 DEVICE_PACKAGE_OVERLAYS += device/samsung/kylepro/overlay
 
+#kernel config
+
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+	LOCAL_KERNEL := device/samsung/kyleprods/kernel
+else
+	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+endif
+
+PRODUCT_COPY_FILES := \
+$(LOCAL_KERNEL):kernel
+
 # Init files
 PRODUCT_COPY_FILES += \
     device/samsung/kylepro/rootdir/fstab.hawaii_ss_kylepro:root/fstab.hawaii_ss_kylepro \
